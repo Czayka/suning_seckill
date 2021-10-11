@@ -1,2 +1,4 @@
 # suning_seckill
 苏宁易购App抢购茅台
+通过接口模拟请求，Detect算法 KeyTable _mZnJKLopqr6sNt8.uvw-xUyzAB7CSW5*1PQR2MO3Y4DEF9X0abcGHIdefTVghijkl
+欢迎star交流
