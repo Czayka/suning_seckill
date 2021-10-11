@@ -1,0 +1,32 @@
+package secKill
+
+import (
+	"encoding/json"
+	"fmt"
+	"suning/global"
+	"suning/request"
+)
+
+type RespDfprsCollect struct {
+	RetInfo string `json:"retInfo"`
+	RetCode string `json:"retCode"`
+	Token string `json:"token"`
+}
+//{
+//	"retInfo": "Succeeded",
+//	"retCode": "000000",
+//	"token": "TI9AI63idbdeqqgj2RApjf97f"
+//}
+func DfprsCollect()(*RespDfprsCollect,error){
+	var postUrl = "https://dfp.suning.com/dfprs-collect/fp/ios-porto.json"
+	var postData = `feature=1fPiq8A04X6eNV19Uby6UMsp9cvdloI3xk4D0oDU1-G-hnREGOwUjHPmx6e1xjlOjumdcGDbWL-oJyNVhGJ6QFHUPeg4TOtbuq0gYvW5cf46VX8xWo5IZ8tiGafkh5N672wPNzKERpcZUZdKJc8_G2SMZVGy2__wgZUrHLnqwiBhbGUwJoXDnj7z4hwqroRGa3Y_BB7vkh0I9cNjYu4TW1EmjCkmseov-U6YXBXqI3UY4OPfImAhtvxSNf9LFTajQE54ERloH3NKL229Xt5OKS3F035LFfeztHpH8N34FKUtSl6xC65--wQpShnj6ngb4G0MWsNfPGHkaxdhv9hTLDyp3uxpyP58TaGJHatvnhHcr5ywwFzMBwh_fHHI4AKIJ_lXmBWvP9SR-Jlssy-c886lG_FeSQBJ5HySgsQIU_f2jnzyF-G7O5NL60FKRX3OT5zkGlDqXCHMcEQJgonKuGNV0KhyIN84zJ6trq_0vf_hTNBFW_kA9PgtvpGZvIp3t03gnWV-oSLZdK5aPYfsngqOT0fhdwO5aOg74yABFLi0b_-jhcRB6gV4IgkMOvRRnHcMZFmHyEUpgHRwez5yNYYy57dZIj-Id8F7QkHe4bSqc_exA6NybdFF-lCq1jNfxNv2iUtwHjQmJy0rPpxNsSApRz29n9jpEb90JUoQRge9yucjgomLkXT9vMcFhm9-IaCFGLcio98EyOKtG6tMOXu9KctnAoUgRx__H-nuct6rnC_m3HEhMkyeBcLJ-B0teL0DflZdgZFOlmyea2jUOAlgzBt5J6Tnz9pw7HHa9HwUqukw6foQUbCOPCLSNvK_3KKvyuSqyfWgeudj6WGrqXeC2JcfdkJEdsOZCr6u4-seWaMVebMx24X6PJhaahjXVL5XuH47kvoY20x04r78B501F2wk1QFcnvGLblQgTnjnIWHFhtu8N6pQArBPve3fDo7RnB9Mw-3uuFpcodEeYq5gOMtYgYxRYCYH2H5Mf974f8xQkUTf7NsPCUVsdtIO91UkgC1F3TAzBcXNWDDPKxs4GcTTTcgRlJeokqrM57q9tckviK9dYMvFZcg3cxgsNke1Yl0-D9ULwstqGFn2qafl9s2Q43-HvC0Arn8OFVeb1YE8nVV2FEx9Y86NHHlqvjk-Uz_nhhhDYoOYXxnijIa7t737D5fg-AZNYUHG4NaIVcnOeEcmv_MDp6lp5QpPDZjUkJkT_FiJ9ZrEP7uG8Vck6WnHBdn8wMN_qzLIba4KARpHjn7gkfreE-QFqw4p7s3Q2uIRE-nLl0wPHUwlQ7gII2ApoWZCQDtAhHkBhHtegyeV4oRRRod3qjIDT2WbhKs79fCkLIafwxeoFBc9IY0TyPsWSHg8t1WyfqScnmiL3xEnYqErU2KFiZVXibQk1TFo9DDH9nOyqWYbAb4F_jOYlVKyF7n47raNF4hz5-PlnMKgM-qENNJquUrv7_gaGhooBd0irOKyPrc2AOoCZijJSp6ZQ7GjNUZDPgFw-Mnon0vJWQTRS-I3WBJoslD3HzoU_bexgAPBEA0A4Sx7aEB0X4cDCqPQTw9DHZ4wueSJRwmG-mhjCiYVqTJ0Kbegu_syP4P0AAfz5IiiBHcGIE_vk1PesLcovkKqiyH8YtQVxOeZHeKC3WwnZ6EKIqpDlcgQ-KJWIcqfkgqwIz8Rhw712GmyY42uFkZr8ps9yMXkd7wcWOGb80AXZfxpNJLyTcYWiesdHfSj-TpOktTGCCLqurkac6VNBbT8SbMfHbFfdrnUgdEjQa88aYVvO7KK&key=8kL3AVej9j8UCPbifEjp0W4affIb2&fpVersion=1.7.7&appCode=qEmt9X4YmoV2Vye8`
+	body,err := request.HttpDo("POST",postUrl,postData,global.Cookie)
+	collect := &RespDfprsCollect{}
+	if err != nil {
+		fmt.Println("DfprsCollect",err)
+		return nil,err
+	}else{
+		json.Unmarshal(body,&collect)
+		return collect,nil
+	}
+}
